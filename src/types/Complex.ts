@@ -1,8 +1,8 @@
 export interface ComplexType {
   real: number;
   imaginary: number;
-  add: (Complex) => ComplexType;
-  subtract: (Complex) => ComplexType;
+  add: (ComplexType) => ComplexType;
+  subtract: (ComplexType) => ComplexType;
   map: (Function) => ComplexType;
   square: () => ComplexType;
 }
