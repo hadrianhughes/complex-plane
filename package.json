@@ -1,0 +1,11 @@
+{
+  "name": "complex-plane",
+  "version": "0.0.0",
+  "description": "An HTML5 Canvas app for working with numbers in the complex plane",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hadrian Hughes",
+  "license": "GPL-3.0"
+}
