@@ -29,6 +29,8 @@ export const getMouseLocation = (): MaybeType => Maybe(
     ? { x: mouseLocation.x, y: mouseLocation.y } : null
 );
 
+export const getClicksSince = getSince(clicks);
+
 export const listen = () => {
   window.addEventListener('mousemove', e => {
     mouseLocation.x = e.clientX;
@@ -41,5 +43,3 @@ export const listen = () => {
     clicks.push({ time: Date.now(), x, y });
   });
 };
-
-export const getClicksSince = getSince(clicks);

@@ -1,9 +1,10 @@
+import { isNullish } from '../utils';
+
 export interface ComplexType {
   real: number;
   imaginary: number;
   add: (ComplexType) => ComplexType;
   subtract: (ComplexType) => ComplexType;
-  map: (Function) => ComplexType;
   square: () => ComplexType;
 }
 
@@ -12,7 +13,6 @@ export const Complex = (real = 0, imaginary = 0): ComplexType => ({
   imaginary,
   add: (x: ComplexType): ComplexType => Complex(real + x.real, imaginary + x.imaginary),
   subtract: (x: ComplexType): ComplexType => Complex(real - x.real, imaginary - x.imaginary),
-  map: (fn: Function): ComplexType => fn(Complex(real, imaginary)),
   square: () => {
     const imIsNegative = imaginary < 0;
 

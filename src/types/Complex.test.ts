@@ -42,19 +42,6 @@ describe('Complex type', () => {
     expect(result.imaginary).toBe(z1i - z2i);
   });
 
-  it('Should have a map function which accepts a function to return a new transformed Complex', () => {
-    const doubleFn = c => Complex(c.real * 2, c.imaginary * 2);
-
-    const z1r = 2;
-    const z1i = 3;
-    const z = Complex(z1r, z1i);
-
-    const result = z.map(doubleFn);
-
-    expect(result.real).toBe(z1r * 2);
-    expect(result.imaginary).toBe(z1i * 2);
-  });
-
   it('Should have a square function which takes no arguments and returns a new squared version of the Complex', () => {
     const z1r = 2;
     const z1i = 3;

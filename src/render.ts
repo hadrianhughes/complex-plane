@@ -5,7 +5,11 @@ export const render = ctx => state => {
   canvas.width = canvas.width;
 
   ctx.fillStyle = 'white';
-  ctx.fillRect(10, 10, 50, 50);
+
+  state.numbers.forEach(n => {
+    ctx.arc(n.real, n.imaginary, 5, 0, 2 * Math.PI);
+    ctx.fill();
+  });
 };
 
 export default render;
