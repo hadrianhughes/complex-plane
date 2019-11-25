@@ -1,4 +1,4 @@
-import { isNullish } from './utils';
+import { isNullish, lens } from './utils';
 
 describe('isNullish function', () => {
   it('Should accept any type of value without throwing an error', () => {
@@ -19,5 +19,18 @@ describe('isNullish function', () => {
     expect(isNullish(0)).toBe(false);
     expect(isNullish('')).toBe(false);
     expect(isNullish({})).toBe(false);
+  });
+});
+
+describe('get function', () => {
+  it('Should accept a path array and an object and return a Maybe containing the value at that path', () => {
+    const obj = {
+      foo: {
+        bar: 'baz'
+      }
+    };
+
+    expect(lens(['foo', 'bar'])(obj).extract()).toBe(obj.foo.bar);
+    expect(lens(['foo', 'baz'])(obj).isNothing()).toBe(true)
   });
 });
