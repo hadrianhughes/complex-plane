@@ -7,14 +7,19 @@ export interface ComplexType {
   square: () => ComplexType;
 }
 
-export const Complex = (real: number, imaginary: number): ComplexType => ({
+export const Complex = (real = 0, imaginary = 0): ComplexType => ({
   real,
   imaginary,
   add: (x: ComplexType): ComplexType => Complex(real + x.real, imaginary + x.imaginary),
   subtract: (x: ComplexType): ComplexType => Complex(real - x.real, imaginary - x.imaginary),
   map: (fn: Function): ComplexType => fn(Complex(real, imaginary)),
   square: () => {
-    console.warn('UNFINISHED');
-    return Complex(real, imaginary);
+    const imIsNegative = imaginary < 0;
+
+    if (imIsNegative) {
+      return Complex(real * real + imaginary * imaginary);
+    } else {
+      return Complex(real * real - imaginary * imaginary, 2 * real * imaginary);
+    }
   }
 });

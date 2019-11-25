@@ -58,11 +58,20 @@ describe('Complex type', () => {
   it('Should have a square function which takes no arguments and returns a new squared version of the Complex', () => {
     const z1r = 2;
     const z1i = 3;
-    const z = Complex(z1r, z1i);
+    const z1 = Complex(z1r, z1i);
 
-    const result = z.square();
+    const result1 = z1.square();
 
-    expect(result.real).toBe(z1r * z1r);
-    expect(result.imaginary).toBe(z1i * z1i);
+    expect(result1.real).toBe(-5);
+    expect(result1.imaginary).toBe(12);
+
+    const z2r = 3;
+    const z2i = -5;
+    const z2 = Complex(z2r, z2i);
+
+    const result2 = z2.square();
+
+    expect(result2.real).toBe(34)
+    expect(result2.imaginary).toBe(0);
   });
 });
