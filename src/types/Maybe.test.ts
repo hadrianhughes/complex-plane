@@ -37,4 +37,12 @@ describe('Maybe type', () => {
     const m2 = Maybe(input2);
     expect(m2.pipe(t1, t2, t3).extract()).toBe(input2);
   });
+
+  it('Should have an isNothing function which returns true only if the contained value is nullish', () => {
+    expect(Maybe(1).isNothing()).toBe(false);
+    expect(Maybe(false).isNothing()).toBe(false);
+    expect(Maybe('').isNothing()).toBe(false);
+    expect(Maybe(null).isNothing()).toBe(true);
+    expect(Maybe(undefined).isNothing()).toBe(true);
+  });
 });
