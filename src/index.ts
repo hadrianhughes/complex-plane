@@ -1,6 +1,6 @@
 import { listen } from './input';
 import render from './render';
-import update, { initialState } from './update';
+import update, { initialState, State } from './update';
 
 const CANVAS_WIDTH = window.innerWidth;
 const CANVAS_HEIGHT = window.innerHeight;
@@ -11,7 +11,7 @@ canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 document.body.appendChild(canvas);
 
-const loop = lastState => {
+const loop = (lastState: State) => {
   const nextState = update(lastState);
   render(context)(nextState);
 
