@@ -1,4 +1,4 @@
-import { listen, getMouseLocation, getClicksSince } from './input';
+import { listen } from './input';
 import render from './render';
 import update, { initialState } from './update';
 

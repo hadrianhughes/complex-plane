@@ -1,7 +1,7 @@
 import { ComplexType, Complex } from './types/Complex';
 import { getMouseLocation, getClicksSince } from './input';
 
-interface State {
+export interface State {
   numbers: ComplexType[];
 }
 

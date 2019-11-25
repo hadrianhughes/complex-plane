@@ -1,6 +1,7 @@
 import { lens } from './utils';
+import { State } from './update';
 
-export const render = ctx => state => {
+export const render = ctx => (state: State) => {
   const { canvas } = ctx;
   canvas.width = canvas.width;
 
