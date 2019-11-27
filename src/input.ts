@@ -11,10 +11,16 @@ interface Click {
   y: number;
 }
 
+interface Key {
+  time: number;
+  keyCode: number;
+}
+
 let mouseLocation = { x: 0, y: 0 };
 let clicks: Click[] = [];
+let keys: Key[] = [];
 
-const getSince = (arr: Click[]) => (time: number) => {
+const getSince = (arr: Click[] | Key[]) => (time: number) => {
   let since = [];
 
   for (let i = 0;i < arr.length;i += 1) {
@@ -30,6 +36,7 @@ export const getMouseLocation = (): MaybeType => Maybe(
 );
 
 export const getClicksSince = getSince(clicks);
+export const getKeysSince = getSince(keys);
 
 export const listen = () => {
   window.addEventListener('mousemove', e => {
@@ -41,5 +48,11 @@ export const listen = () => {
     const { x, y } = mouseLocation;
 
     clicks.push({ time: Date.now(), x, y });
+  });
+
+  window.addEventListener('keydown', e => {
+    const { keyCode } = e;
+
+    keys.push({ time: Date.now(), keyCode });
   });
 };
