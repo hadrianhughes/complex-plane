@@ -46,13 +46,11 @@ export const listen = () => {
 
   window.addEventListener('mousedown', () => {
     const { x, y } = mouseLocation;
-
     clicks.push({ time: Date.now(), x, y });
   });
 
   window.addEventListener('keydown', e => {
     const { keyCode } = e;
-
     keys.push({ time: Date.now(), keyCode });
   });
 };
