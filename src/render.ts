@@ -28,26 +28,42 @@ export const render = ctx => (state: State) => {
   const realAxisSize = canvas.width - AXIS_PADDING * 2;
   const imaginaryAxisSize = canvas.height - AXIS_PADDING * 2;
 
+  const notchSize = 10;
+  const notchThickness = 2;
   for (let i = 0;i < state.realRange;i += 1) {
-    ctx.fillRect(
-      AXIS_PADDING + ((realAxisSize / 2) / state.realRange) * i,
-      canvas.height / 2 - 5, 2, 10);
+    const middle = canvas.width / 2;
+    const offset = ((realAxisSize / 2) / state.realRange) * (i + 1);
+    const notchOffset = canvas.height / 2 - notchSize / 2;
 
     ctx.fillRect(
-      (canvas.width - AXIS_PADDING) - ((realAxisSize / 2) / state.realRange) * i,
-      canvas.height / 2 - 5, 2, 10);
+      middle - offset,
+      notchOffset,
+      notchThickness,
+      notchSize);
+
+    ctx.fillRect(
+      middle + offset,
+      notchOffset,
+      notchThickness,
+      notchSize);
   }
 
   for (let i = 0;i < state.realRange;i += 1) {
-    ctx.fillRect(
-      canvas.width / 2 - 5,
-      AXIS_PADDING + ((imaginaryAxisSize / 2) / state.imaginaryRange) * i,
-      10, 2);
+    const middle = canvas.height / 2;
+    const offset = ((imaginaryAxisSize / 2) / state.imaginaryRange) * (i + 1);
+    const notchOffset = canvas.width / 2 - notchSize / 2;
 
     ctx.fillRect(
-      canvas.width / 2 - 5,
-      (canvas.height - AXIS_PADDING) - ((imaginaryAxisSize / 2) / state.imaginaryRange) * i,
-      10, 2);
+      notchOffset,
+      middle - offset,
+      notchSize,
+      notchThickness);
+
+    ctx.fillRect(
+      notchOffset,
+      middle + offset,
+      notchSize,
+      notchThickness);
   }
 };
 
