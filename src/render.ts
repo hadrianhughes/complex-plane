@@ -55,18 +55,21 @@ export const render = ctx => (state: State) => {
     const middle = canvas.height / 2;
     const offset = ((imaginaryAxisSize / 2) / state.imaginaryRange) * (i + 1);
     const notchOffset = canvas.width / 2 - notchSize / 2;
+    const textOffset = canvas.width / 2 + notchSize + 2;
 
     ctx.fillRect(
       notchOffset,
       middle - offset,
       notchSize,
       notchThickness);
+    ctx.fillText(i + 1, textOffset, middle - offset + 4);
 
     ctx.fillRect(
       notchOffset,
       middle + offset,
       notchSize,
       notchThickness);
+    ctx.fillText(`-${i + 1}`, textOffset, middle + offset + 3);
   }
 };
 
