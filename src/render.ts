@@ -31,23 +31,23 @@ export const render = ctx => (state: State) => {
   for (let i = 0;i < state.realRange;i += 1) {
     ctx.fillRect(
       AXIS_PADDING + ((realAxisSize / 2) / state.realRange) * i,
-      canvas.height / 2 - 5, 1, 10);
+      canvas.height / 2 - 5, 2, 10);
 
     ctx.fillRect(
       (canvas.width - AXIS_PADDING) - ((realAxisSize / 2) / state.realRange) * i,
-      canvas.height / 2 - 5, 1, 10);
+      canvas.height / 2 - 5, 2, 10);
   }
 
   for (let i = 0;i < state.realRange;i += 1) {
     ctx.fillRect(
       canvas.width / 2 - 5,
       AXIS_PADDING + ((imaginaryAxisSize / 2) / state.imaginaryRange) * i,
-      10, 1);
+      10, 2);
 
     ctx.fillRect(
       canvas.width / 2 - 5,
       (canvas.height - AXIS_PADDING) - ((imaginaryAxisSize / 2) / state.imaginaryRange) * i,
-      10, 1);
+      10, 2);
   }
 };
 
