@@ -3,8 +3,8 @@ import { getMouseLocation, getClicksSince } from './input';
 
 export interface State {
   numbers: ComplexType[];
-  realInView: number;
-  imaginaryInView: number;
+  realRange: number;
+  imaginaryRange: number;
 }
 
 const update = (state: State): State => {
@@ -17,8 +17,8 @@ const update = (state: State): State => {
 
 export const initialState: State = {
   numbers: [],
-  realInView: 10,
-  imaginaryInView: 10
+  realRange: 10,
+  imaginaryRange: 10
 };
 
 export default update;
