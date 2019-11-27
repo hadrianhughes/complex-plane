@@ -30,6 +30,8 @@ export const render = ctx => (state: State) => {
 
   const notchSize = 10;
   const notchThickness = 2;
+
+  // Draw notches on real axis
   for (let i = 0;i < state.realRange;i += 1) {
     const middle = canvas.width / 2;
     const offset = ((realAxisSize / 2) / state.realRange) * (i + 1);
@@ -51,6 +53,7 @@ export const render = ctx => (state: State) => {
     ctx.fillText(i + 1, middle + offset - 2, textOffset);
   }
 
+  // Draw notches on imaginary axis
   for (let i = 0;i < state.realRange;i += 1) {
     const middle = canvas.height / 2;
     const offset = ((imaginaryAxisSize / 2) / state.imaginaryRange) * (i + 1);
@@ -71,6 +74,21 @@ export const render = ctx => (state: State) => {
       notchThickness);
     ctx.fillText(`-${i + 1}`, textOffset, middle + offset + 3);
   }
+
+  // Draw numbers
+  state.numbers.forEach(n => {
+    const realCell = n.real + state.realRange;
+    const imaginaryCell = n.imaginary + state.imaginaryRange;
+    const realCellSize = (realAxisSize / 2) / state.realRange;
+    const imaginaryCellSize = (imaginaryAxisSize / 2) / state.imaginaryRange;
+
+    ctx.fillStyle = 'red';
+    ctx.arc(
+      AXIS_PADDING + realCell * realCellSize,
+      (canvas.height - AXIS_PADDING) - imaginaryCell * imaginaryCellSize,
+      5, 0, 2 * Math.PI);
+    ctx.fill();
+  });
 };
 
 export default render;

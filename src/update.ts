@@ -9,7 +9,7 @@ export interface State {
 
 const update = (state: State): State => {
   if (state.numbers.length === 0) {
-    return { ...state, numbers: [ Complex(50, 100) ] };
+    return { ...state, numbers: [ Complex(3, -8) ] };
   }
 
   return state;
