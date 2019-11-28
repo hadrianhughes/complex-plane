@@ -28,6 +28,7 @@ describe('isNullish function', () => {
   });
 });
 
+
 describe('lens function', () => {
   it('Should accept a path array and an object and return a Maybe containing the value at that path', () => {
     const obj = {
@@ -40,6 +41,7 @@ describe('lens function', () => {
     expect(lens(['foo', 'baz'])(obj).isNothing()).toBe(true)
   });
 });
+
 
 describe('diffArray function', () => {
   it('Should return false if two arrays are identical', () => {
@@ -60,6 +62,7 @@ describe('diffArray function', () => {
     expect(diffArray(input1, input2)).toBe(true);
   });
 });
+
 
 describe('diffObject function', () => {
   it('Should perform a deep comparison and return false only if the two objects are identical', () => {
@@ -98,6 +101,7 @@ describe('diffObject function', () => {
     expect(diffObject(input1, input2)).toBe(true);
   });
 });
+
 
 describe('diff function', () => {
   const inputObj = { foo: 'bar', bar: 'baz' };

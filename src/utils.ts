@@ -1,7 +1,10 @@
 import { Maybe } from './types/Maybe';
 
+// Return true if value is null or undefined
 export const isNullish = value => value === null || value === undefined;
 
+
+// Safely get a nested value from an object
 export const lens = (path: string[]) => (obj: object) =>
   Maybe(path.reduce((value, key) => {
     if (typeof value === 'object') {
@@ -11,6 +14,8 @@ export const lens = (path: string[]) => (obj: object) =>
     return undefined;
   }, obj));
 
+
+// Return true if two arrays are not identical
 export const diffArray = (arr1: Array<any>, arr2: Array<any>): boolean => {
   if (arr1.length !== arr2.length) return true;
 
@@ -25,6 +30,8 @@ export const diffArray = (arr1: Array<any>, arr2: Array<any>): boolean => {
   return false;
 };
 
+
+// Return true if two objects are not identical
 export const diffObject = (obj1: object, obj2: object): boolean => {
   const keys1 = Object.keys(obj1);
   const keys2 = Object.keys(obj2);
@@ -46,6 +53,8 @@ export const diffObject = (obj1: object, obj2: object): boolean => {
   return false;
 };
 
+
+// Overloadable - defers to diffObject and diffArray
 export const diff = (obj1, obj2): boolean => {
   if (Array.isArray(obj1) !== Array.isArray(obj2)) return true;
 
