@@ -1,0 +1,17 @@
+html, body {
+  margin: 0;
+}
+
+canvas {
+  background-color: #151515;
+  display: block;
+}
+
+.ui-button {
+  cursor: pointer;
+  left: 0;
+  margin-left: 20px;
+  margin-top: 20px;
+  position: fixed;
+  top: 0;
+}

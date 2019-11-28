@@ -12,14 +12,14 @@ canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 document.body.appendChild(canvas);
 
+const r = render(context);
+
 const loop = (lastState: State) => {
   const nextState = update(lastState);
 
   const didChange = diff(lastState, nextState);
 
-  if (didChange) {
-    render(context)(nextState);
-  }
+  if (didChange) r(nextState);
 
   const nextLoop = () => loop(nextState);
   requestAnimationFrame(nextLoop);

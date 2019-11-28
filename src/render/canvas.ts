@@ -1,9 +1,8 @@
-import { lens } from './utils';
-import { State } from './update';
+import { State } from '../update';
 
 const AXIS_PADDING = 50;
 
-export const render = ctx => (state: State) => {
+export const render = (ctx, state: State): void => {
   const { canvas } = ctx;
   canvas.width = canvas.width;
 
