@@ -1,6 +1,6 @@
 import { listen } from './input';
 import render from './render';
-import update, { initialState, State } from './update';
+import update, { initialState, State, Action } from './update/state';
 import { diff } from './utils';
 
 const CANVAS_WIDTH = window.innerWidth;
@@ -14,15 +14,14 @@ document.body.appendChild(canvas);
 
 const r = render(context);
 
-const loop = (lastState: State) => {
-  const nextState = update(lastState);
+const loop = (state: State) => {
+  const dispatch = (action: Action): void => {
+    const nextState = update(state, action);
+    const nextLoop = () => loop(nextState);
+    requestAnimationFrame(nextLoop);
+  };
 
-  const didChange = diff(lastState, nextState);
-
-  if (didChange) r(nextState);
-
-  const nextLoop = () => loop(nextState);
-  requestAnimationFrame(nextLoop);
+  r(state, dispatch);
 };
 
 listen();

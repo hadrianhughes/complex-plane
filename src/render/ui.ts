@@ -1,4 +1,5 @@
-import { State } from '../update';
+import { State } from '../update/state';
+import { performExample } from '../update/actions';
 import config from '../config';
 
 export const button = (text: string, onClick: (this: GlobalEventHandlers, ev: MouseEvent) => any): HTMLButtonElement => {
@@ -9,8 +10,8 @@ export const button = (text: string, onClick: (this: GlobalEventHandlers, ev: Mo
   return el;
 };
 
-export const buildUI = (state: State): Array<HTMLElement> => {
-  const btnSettings = button('Settings', () => console.log('got clicked'));
+export const buildUI = (state: State, dispatch: Function): Array<HTMLElement> => {
+  const btnSettings = button('Settings', () => dispatch(performExample()));
 
   return [btnSettings];
 };
@@ -39,8 +40,8 @@ export const addToDOM = (elements: Array<HTMLElement>): void => {
   elements.forEach(e => container.appendChild(e));
 };
 
-export const render = (state: State): void => {
-  const ui = buildUI(state);
+export const render = (state: State, dispatch: Function): void => {
+  const ui = buildUI(state, dispatch);
   addToDOM(ui);
 };
 
