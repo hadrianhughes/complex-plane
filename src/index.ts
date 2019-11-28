@@ -1,6 +1,7 @@
 import { listen } from './input';
 import render from './render';
 import update, { initialState, State } from './update';
+import { diff } from './utils';
 
 const CANVAS_WIDTH = window.innerWidth;
 const CANVAS_HEIGHT = window.innerHeight;
@@ -13,7 +14,12 @@ document.body.appendChild(canvas);
 
 const loop = (lastState: State) => {
   const nextState = update(lastState);
-  render(context)(nextState);
+
+  const didChange = diff(lastState, nextState);
+
+  if (didChange) {
+    render(context)(nextState);
+  }
 
   const nextLoop = () => loop(nextState);
   requestAnimationFrame(nextLoop);
