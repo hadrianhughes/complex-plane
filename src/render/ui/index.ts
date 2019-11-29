@@ -1,23 +1,9 @@
-import { State, dispatchType } from '../update/state';
-import { setSettingsOpen } from '../update/actions';
-import config from '../config';
-import { filter, truthy } from '../utils';
-
-export const button = (text: string, onClick: (this: GlobalEventHandlers, ev: MouseEvent) => any): HTMLButtonElement => {
-  const el = document.createElement('button');
-  el.className = 'ui-button';
-  el.innerHTML = text;
-  el.onclick = onClick;
-  return el;
-};
-
-export const overlay = (contents: Array<HTMLElement>): HTMLElement => {
-  const el = document.createElement('div');
-  el.className = 'ui-overlay';
-  contents.forEach(c => el.appendChild(c));
-  return el;
-};
-
+import { State, dispatchType } from '../../update/state';
+import button from './button';
+import overlay from './overlay';
+import config from '../../config';
+import { setSettingsOpen } from '../../update/actions';
+import { filter, truthy } from '../../utils';
 
 export const buildUI = (state: State, dispatch: dispatchType): Array<HTMLElement> => {
   const btnSettings = button('Settings', () => dispatch(setSettingsOpen(true)));
