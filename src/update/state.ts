@@ -11,6 +11,8 @@ export interface Action {
   payload: object;
 }
 
+export type dispatchType = (action: Action) => void;
+
 const update = (state: State, action: Action): State => {
   switch (action.type) {
     case 'EXAMPLE': {

@@ -1,4 +1,4 @@
-import { State } from '../update';
+import { State } from '../update/state';
 
 const AXIS_PADDING = 50;
 
