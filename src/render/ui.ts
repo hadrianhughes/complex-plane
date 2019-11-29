@@ -1,5 +1,5 @@
 import { State, dispatchType } from '../update/state';
-import { performExample } from '../update/actions';
+import { setSettingsOpen } from '../update/actions';
 import config from '../config';
 
 export const button = (text: string, onClick: (this: GlobalEventHandlers, ev: MouseEvent) => any): HTMLButtonElement => {
@@ -11,7 +11,7 @@ export const button = (text: string, onClick: (this: GlobalEventHandlers, ev: Mo
 };
 
 export const buildUI = (state: State, dispatch: dispatchType): Array<HTMLElement> => {
-  const btnSettings = button('Settings', () => dispatch(performExample()));
+  const btnSettings = button('Settings', () => dispatch(setSettingsOpen(true)));
 
   return [btnSettings];
 };

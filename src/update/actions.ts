@@ -1,6 +1,6 @@
 import { Action } from './state';
 
-export const performExample = (): Action => ({
-  type: 'EXAMPLE',
-  payload: null
+export const setSettingsOpen = (open: boolean): Action => ({
+  type: 'SET_SETTINGS_OPEN',
+  payload: open
 });
