@@ -2,6 +2,7 @@ import { listen } from './input';
 import render from './render';
 import update, { initialState, State, Action } from './update/state';
 import { diff } from './utils';
+import './styles/global.scss';
 
 const CANVAS_WIDTH = window.innerWidth;
 const CANVAS_HEIGHT = window.innerHeight;
