@@ -7,7 +7,7 @@ import { filter, truthy } from '../../utils';
 
 export const buildUI = (state: State, dispatch: dispatchType): Array<HTMLElement> => {
   const btnSettings = button('Settings', () => dispatch(setSettingsOpen(true)));
-  const settingsOverlay = state.settingsOpen ? overlay([]) : null;
+  const settingsOverlay = state.settingsOpen ? overlay([], () => dispatch(setSettingsOpen(false))) : null;
 
   return filter([
     btnSettings,
@@ -43,5 +43,7 @@ export const render = (state: State, dispatch: dispatchType): void => {
   const ui = buildUI(state, dispatch);
   addToDOM(ui);
 };
+
+export type clickEventType = (this: GlobalEventHandlers,  ev: MouseEvent) => any;
 
 export default render;
