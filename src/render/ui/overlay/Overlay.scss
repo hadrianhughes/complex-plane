@@ -1,4 +1,5 @@
 $s-width: 500px;
+$s-close-size: 32px;
 
 .Overlay {
   background: rgba(0, 0, 0, 0.5);
@@ -10,10 +11,43 @@ $s-width: 500px;
 
   &__inner {
     background: #fff;
+    min-height: 55px;
     left: 50%;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
     width: $s-width;
+  }
+
+  &__close {
+    background: #222;
+    border: none;
+    cursor: pointer;
+    height: $s-close-size;
+    position: absolute;
+    right: 10px;
+    text-indent: -9999px;
+    top: 10px;
+    width: $s-close-size;
+
+    &::before,
+    &::after {
+      background: #fff;
+      content: '';
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      width: 60%;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
   }
 }
