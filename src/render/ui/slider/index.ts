@@ -1,3 +1,4 @@
+import './Slider.scss';
 import { HTMLEventType } from '../index';
 
 const slider = (
@@ -13,7 +14,7 @@ const slider = (
 
   const labelEl = document.createElement('label');
   labelEl.className = 'Slider__label';
-  labelEl.innerHTML = label;
+  labelEl.innerHTML = label + ':';
   labelEl.htmlFor = id;
   el.appendChild(labelEl);
 
