@@ -23,6 +23,8 @@ const slider = (
   input.id = id;
   input.type = 'range';
   input.onchange = onChange;
+  input.min = String(min);
+  input.max = String(max);
   input.value = String(value);
   el.appendChild(input);
 
