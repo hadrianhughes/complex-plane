@@ -60,3 +60,19 @@ export const diff = (obj1, obj2): boolean => {
 
   return Array.isArray(obj1) ? diffArray(obj1, obj2) : diffObject(obj1, obj2);
 };
+
+
+// Return true if the given value is truthy
+export const truthy = (value: any, noEmpty: boolean = false) => {
+  if (noEmpty) {
+    if (Array.isArray(value)) return value.length > 0;
+    if (typeof value === 'object') return Object.keys(value).length > 0;
+  }
+
+  return Boolean(value);
+};
+
+
+// Return all elements of array which meet a condition
+export const filter = (array: Array<any>, fn: Function): Array<any> =>
+  array.filter(item => fn(item));

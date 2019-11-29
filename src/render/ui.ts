@@ -1,6 +1,7 @@
 import { State, dispatchType } from '../update/state';
 import { setSettingsOpen } from '../update/actions';
 import config from '../config';
+import { filter, truthy } from '../utils';
 
 export const button = (text: string, onClick: (this: GlobalEventHandlers, ev: MouseEvent) => any): HTMLButtonElement => {
   const el = document.createElement('button');
@@ -10,10 +11,22 @@ export const button = (text: string, onClick: (this: GlobalEventHandlers, ev: Mo
   return el;
 };
 
+export const overlay = (contents: Array<HTMLElement>): HTMLElement => {
+  const el = document.createElement('div');
+  el.className = 'ui-overlay';
+  contents.forEach(c => el.appendChild(c));
+  return el;
+};
+
+
 export const buildUI = (state: State, dispatch: dispatchType): Array<HTMLElement> => {
   const btnSettings = button('Settings', () => dispatch(setSettingsOpen(true)));
+  const settingsOverlay = state.settingsOpen ? overlay([]) : null;
 
-  return [btnSettings];
+  return filter([
+    btnSettings,
+    settingsOverlay
+  ], truthy);
 };
 
 export const getUIContainer = (): HTMLElement => {
