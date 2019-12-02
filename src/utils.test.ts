@@ -3,7 +3,8 @@ import {
   lens,
   diffArray,
   diffObject,
-  diff
+  diff,
+  roundNearest
 } from './utils';
 
 describe('isNullish function', () => {
@@ -117,5 +118,14 @@ describe('diff function', () => {
 
   it('Should return true if the given arguments are not homogeneous', () => {
     expect(diff(inputObj, inputArr)).toBe(true);
+  });
+});
+
+
+describe('roundNearest function', () => {
+  it('Should round y up to the nearest multiple of x, where x is an integer', () => {
+    expect(roundNearest(5)(31)).toBe(35);
+    expect(roundNearest(3)(22)).toBe(24);
+    expect(roundNearest(1)(3)).toBe(3);
   });
 });

@@ -1,5 +1,6 @@
 import { ComplexType, Complex } from '../types/Complex';
 import { ActionType as A } from '../config';
+import { roundNearest } from '../utils';
 
 export interface State {
   numbers: ComplexType[];
@@ -20,11 +21,11 @@ const update = (state: State, action: Action): State => {
     case A.SET_SETTINGS_OPEN: {
       return { ...state, settingsOpen: Boolean(action.payload) };
     }
-    case 'SET_REAL_RANGE': {
-      return { ...state, realRange: Number(action.payload) };
+    case A.SET_REAL_RANGE: {
+      return { ...state, realRange: roundNearest(5)(Number(action.payload)) };
     }
-    case 'SET_IMAGINARY_RANGE': {
-      return { ...state, imaginaryRange: Number(action.payload) };
+    case A.SET_IMAGINARY_RANGE: {
+      return { ...state, imaginaryRange: roundNearest(5)(Number(action.payload)) };
     }
   }
 

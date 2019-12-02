@@ -7,5 +7,7 @@ export default {
 };
 
 export enum ActionType {
-  SET_SETTINGS_OPEN
+  SET_SETTINGS_OPEN,
+  SET_REAL_RANGE,
+  SET_IMAGINARY_RANGE
 };

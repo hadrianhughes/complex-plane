@@ -76,3 +76,7 @@ export const truthy = (value: any, noEmpty: boolean = false) => {
 // Return all elements of array which meet a condition
 export const filter = (array: Array<any>, fn: Function): Array<any> =>
   array.filter(item => fn(item));
+
+
+// Round up to the nearest multiple of a given value
+export const roundNearest = (x: number) => (y: number) => Math.ceil(y / x) * x;
