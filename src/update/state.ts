@@ -1,4 +1,5 @@
 import { ComplexType, Complex } from '../types/Complex';
+import { ActionType as A } from '../config';
 
 export interface State {
   numbers: ComplexType[];
@@ -8,7 +9,7 @@ export interface State {
 }
 
 export interface Action {
-  type: string;
+  type: A;
   payload: any;
 }
 
@@ -16,7 +17,7 @@ export type dispatchType = (action: Action) => void;
 
 const update = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'SET_SETTINGS_OPEN': {
+    case A.SET_SETTINGS_OPEN: {
       return { ...state, settingsOpen: Boolean(action.payload) };
     }
   }
