@@ -16,16 +16,24 @@ export interface Action {
 
 export type dispatchType = (action: Action) => void;
 
+const roundRange = (n: number): number => {
+  if (n >= 300) return roundNearest(100)(n);
+  if (n >= 100) return roundNearest(10)(n);
+  return roundNearest(5)(n);
+};
+
 const update = (state: State, action: Action): State => {
   switch (action.type) {
     case A.SET_SETTINGS_OPEN: {
       return { ...state, settingsOpen: Boolean(action.payload) };
     }
     case A.SET_REAL_RANGE: {
-      return { ...state, realRange: roundNearest(5)(Number(action.payload)) };
+      const n = Number(action.payload);
+      return { ...state, realRange: roundRange(n) };
     }
     case A.SET_IMAGINARY_RANGE: {
-      return { ...state, imaginaryRange: roundNearest(5)(Number(action.payload)) };
+      const n = Number(action.payload);
+      return { ...state, imaginaryRange: roundRange(n) };
     }
   }
 

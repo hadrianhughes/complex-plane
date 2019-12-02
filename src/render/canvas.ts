@@ -2,6 +2,13 @@ import { State } from '../update/state';
 
 const AXIS_PADDING = 50;
 
+const chunkAxis = (range: number) => {
+  if (range > 300) return 100;
+  if (range > 100) return 10;
+  if (range > 20) return 5;
+  return 1;
+};
+
 export const render = (ctx, state: State): void => {
   const { canvas } = ctx;
   canvas.width = canvas.width;
@@ -31,9 +38,10 @@ export const render = (ctx, state: State): void => {
   const notchThickness = 2;
 
   // Draw notches on real axis
-  for (let i = 0;i < state.realRange;i += 1) {
+  const realChunkSize = chunkAxis(state.realRange);
+  for (let i = 0;i < state.realRange / realChunkSize;i += 1) {
     const middle = canvas.width / 2;
-    const offset = ((realAxisSize / 2) / state.realRange) * (i + 1);
+    const offset = ((realAxisSize / 2) / (state.realRange / realChunkSize)) * (i + 1);
     const notchOffset = canvas.height / 2 - notchSize / 2;
     const textOffset = canvas.height / 2 + notchSize * 2;
 
@@ -42,20 +50,21 @@ export const render = (ctx, state: State): void => {
       notchOffset,
       notchThickness,
       notchSize);
-    ctx.fillText(`-${i + 1}`, middle - offset - 4, textOffset);
+    ctx.fillText(`-${(i + 1) * realChunkSize}`, middle - offset - 4, textOffset);
 
     ctx.fillRect(
       middle + offset,
       notchOffset,
       notchThickness,
       notchSize);
-    ctx.fillText(i + 1, middle + offset - 2, textOffset);
+    ctx.fillText((i + 1) * realChunkSize, middle + offset - 2, textOffset);
   }
 
   // Draw notches on imaginary axis
-  for (let i = 0;i < state.imaginaryRange;i += 1) {
+  const imaginaryChunkSize = chunkAxis(state.imaginaryRange);
+  for (let i = 0;i < state.imaginaryRange / imaginaryChunkSize;i += 1) {
     const middle = canvas.height / 2;
-    const offset = ((imaginaryAxisSize / 2) / state.imaginaryRange) * (i + 1);
+    const offset = ((imaginaryAxisSize / 2) / (state.imaginaryRange / imaginaryChunkSize)) * (i + 1);
     const notchOffset = canvas.width / 2 - notchSize / 2;
     const textOffset = canvas.width / 2 + notchSize + 2;
 
@@ -64,14 +73,14 @@ export const render = (ctx, state: State): void => {
       middle - offset,
       notchSize,
       notchThickness);
-    ctx.fillText(i + 1, textOffset, middle - offset + 4);
+    ctx.fillText((i + 1) * imaginaryChunkSize, textOffset, middle - offset + 4);
 
     ctx.fillRect(
       notchOffset,
       middle + offset,
       notchSize,
       notchThickness);
-    ctx.fillText(`-${i + 1}`, textOffset, middle + offset + 3);
+    ctx.fillText(`-${(i + 1) * imaginaryChunkSize}`, textOffset, middle + offset + 3);
   }
 
   // Draw numbers
