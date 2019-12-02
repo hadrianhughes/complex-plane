@@ -1,8 +1,17 @@
+@import '../../../styles/settings.scss';
+
 .Button {
+  background: $s-color-white;
+  border: 0;
   cursor: pointer;
   left: 0;
   margin-left: 20px;
   margin-top: 20px;
+  padding: 10px 20px;
   position: fixed;
   top: 0;
+
+  &:active {
+    background: $s-color-greylight;
+  }
 }

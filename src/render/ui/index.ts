@@ -1,17 +1,39 @@
 import { State, dispatchType } from '../../update/state';
 import button from './button';
 import overlay from './overlay';
+import slider from './slider';
 import config from '../../config';
-import { setSettingsOpen } from '../../update/actions';
+import { setSettingsOpen, setRealRange, setImaginaryRange } from '../../update/actions';
 import { filter, truthy } from '../../utils';
 
 export const buildUI = (state: State, dispatch: dispatchType): Array<HTMLElement> => {
   const btnSettings = button('Settings', () => dispatch(setSettingsOpen(true)));
-  const settingsOverlay = state.settingsOpen ? overlay([], () => dispatch(setSettingsOpen(false))) : null;
+
+  // Build settings overlay
+  const realSlider = slider(
+    'Real range',
+    'real-range',
+    config.MIN_REAL,
+    config.MAX_REAL,
+    state.realRange,
+    e => dispatch(setRealRange(Number((e.target as HTMLInputElement).value))));
+
+  const imaginarySlider = slider(
+    'Imaginary range',
+    'imaginary-range',
+    config.MIN_IMAGINARY,
+    config.MAX_IMAGINARY,
+    state.imaginaryRange,
+    e => dispatch(setImaginaryRange(Number((e.target as HTMLInputElement).value))));
+
+  const settingsOverlay = state.settingsOpen ? overlay([
+    realSlider,
+    imaginarySlider
+  ], () => dispatch(setSettingsOpen(false))) : null;
 
   return filter([
     btnSettings,
-    settingsOverlay
+    settingsOverlay,
   ], truthy);
 };
 
@@ -44,6 +66,6 @@ export const render = (state: State, dispatch: dispatchType): void => {
   addToDOM(ui);
 };
 
-export type clickEventType = (this: GlobalEventHandlers,  ev: MouseEvent) => any;
+export type HTMLEventType = (this: GlobalEventHandlers,  ev: MouseEvent) => any;
 
 export default render;

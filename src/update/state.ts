@@ -20,6 +20,12 @@ const update = (state: State, action: Action): State => {
     case A.SET_SETTINGS_OPEN: {
       return { ...state, settingsOpen: Boolean(action.payload) };
     }
+    case 'SET_REAL_RANGE': {
+      return { ...state, realRange: Number(action.payload) };
+    }
+    case 'SET_IMAGINARY_RANGE': {
+      return { ...state, imaginaryRange: Number(action.payload) };
+    }
   }
 
   return state;

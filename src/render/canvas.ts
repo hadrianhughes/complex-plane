@@ -53,7 +53,7 @@ export const render = (ctx, state: State): void => {
   }
 
   // Draw notches on imaginary axis
-  for (let i = 0;i < state.realRange;i += 1) {
+  for (let i = 0;i < state.imaginaryRange;i += 1) {
     const middle = canvas.height / 2;
     const offset = ((imaginaryAxisSize / 2) / state.imaginaryRange) * (i + 1);
     const notchOffset = canvas.width / 2 - notchSize / 2;

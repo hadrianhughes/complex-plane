@@ -1,9 +1,8 @@
 import './Overlay.scss';
-import { dispatchType } from '../../../update/state';
-import { clickEventType } from '../index';
+import { HTMLEventType } from '../index';
 import button from '../button';
 
-const overlay = (contents: Array<HTMLElement>, onClose: clickEventType): HTMLElement => {
+const overlay = (contents: Array<HTMLElement>, onClose: HTMLEventType): HTMLElement => {
   const el = document.createElement('div');
   el.className = 'Overlay';
 
